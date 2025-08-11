@@ -1,0 +1,225 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.64\",\"type\":2}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "53cec4b421980b9da1b5",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"501edfd602c98894dd15\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":327.74395003903203,\"z\":5000,\"width\":462.6385636221702,\"height\":392.6932084309134}}],\"singleVisual\":{\"visualType\":\"treemap\",\"projections\":{\"Group\":[{\"queryRef\":\"Fact_ProjectExpenses.Year\",\"active\":true}],\"Details\":[{\"queryRef\":\"Fact_ProjectExpenses.Month\"}],\"Values\":[{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Year\"},\"Name\":\"Fact_ProjectExpenses.Year\",\"NativeReferenceName\":\"Year\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Month\"},\"Name\":\"Fact_ProjectExpenses.Month\",\"NativeReferenceName\":\"Month\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalFoodExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\",\"NativeReferenceName\":\"Sum of TotalFoodExpenses\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 392.69,
+          "width": 462.64,
+          "x": 0.00,
+          "y": 327.74,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"51f5f7990d5d0e5d3d2b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":311.75644028103045,\"y\":82.9352068696331,\"z\":2000,\"width\":485.62060889929745,\"height\":216.8306010928962}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Fact_ProjectExpenses.Year\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Year\"},\"Name\":\"Fact_ProjectExpenses.Year\",\"NativeReferenceName\":\"Year\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalFoodExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\",\"NativeReferenceName\":\"Sum of TotalFoodExpenses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalFoodExpenses\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 216.83,
+          "width": 485.62,
+          "x": 311.76,
+          "y": 82.94,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"71489dbce1884625504a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":359.71896955503513,\"y\":0,\"z\":8000,\"width\":437.65807962529277,\"height\":61.951600312256055}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ProjectExpenses.Month\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Month\"},\"Name\":\"Fact_ProjectExpenses.Month\",\"NativeReferenceName\":\"Month\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 61.95,
+          "width": 437.66,
+          "x": 359.72,
+          "y": 0.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"930450010d30800b4267\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":7000,\"width\":359.71896955503513,\"height\":61.951600312256055}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ProjectExpenses.Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Year\"},\"Name\":\"Fact_ProjectExpenses.Year\",\"NativeReferenceName\":\"Year\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 61.95,
+          "width": 359.72,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"9c1248c6a4c76166a7d5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":462.6385636221702,\"y\":327.74395003903203,\"z\":6000,\"width\":402.6854020296643,\"height\":392.6932084309134}}],\"singleVisual\":{\"visualType\":\"treemap\",\"projections\":{\"Group\":[{\"queryRef\":\"Fact_ProjectExpenses.Year\",\"active\":true}],\"Details\":[{\"queryRef\":\"Fact_ProjectExpenses.Month\"}],\"Values\":[{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Year\"},\"Name\":\"Fact_ProjectExpenses.Year\",\"NativeReferenceName\":\"Year\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Month\"},\"Name\":\"Fact_ProjectExpenses.Month\",\"NativeReferenceName\":\"Month\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalTravelExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\",\"NativeReferenceName\":\"Sum of TotalTravelExpenses\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 392.69,
+          "width": 402.69,
+          "x": 462.64,
+          "y": 327.74,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"b99204596434b9e41d25\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":184.85558157689306,\"z\":1000,\"width\":322.74785323965654,\"height\":114.91022638563622}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalTravelExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\",\"NativeReferenceName\":\"Sum of TotalTravelExpenses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalTravelExpenses\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 114.91,
+          "width": 322.75,
+          "x": 0.00,
+          "y": 184.86,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"c15673a2203e710be48b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":82.9352068696331,\"z\":0,\"width\":322.74785323965654,\"height\":101.92037470725995}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalFoodExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\",\"NativeReferenceName\":\"Sum of TotalFoodExpenses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalFoodExpenses\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 101.92,
+          "width": 322.75,
+          "x": 0.00,
+          "y": 82.94,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"c76942b290c10710b7d3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":797.377049180328,\"y\":0,\"z\":9000,\"width\":482.62295081967216,\"height\":82.9352068696331}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ProjectExpenses.DAVVName\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"DAVVName\"},\"Name\":\"Fact_ProjectExpenses.DAVVName\",\"NativeReferenceName\":\"DAVVName\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 82.94,
+          "width": 482.62,
+          "x": 797.38,
+          "y": 0.00,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"d811a705d72bdd589730\",\"layouts\":[{\"id\":0,\"position\":{\"x\":865.3239656518346,\"y\":359.71896955503513,\"z\":4000,\"width\":414.6760343481655,\"height\":360.71818891491023}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ProjectExpenses.Year\"},{\"queryRef\":\"Fact_ProjectExpenses.Month\"},{\"queryRef\":\"Fact_ProjectExpenses.DAVVName\"},{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\"},{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"DAVVName\"},\"Name\":\"Fact_ProjectExpenses.DAVVName\",\"NativeReferenceName\":\"DAVVName\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalFoodExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\",\"NativeReferenceName\":\"Sum of TotalFoodExpenses\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalTravelExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\",\"NativeReferenceName\":\"Sum of TotalTravelExpenses\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Year\"},\"Name\":\"Fact_ProjectExpenses.Year\",\"NativeReferenceName\":\"Year\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Month\"},\"Name\":\"Fact_ProjectExpenses.Month\",\"NativeReferenceName\":\"Month\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"DAVVName\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"292.29665703148754D\"}}}},\"selector\":{\"metadata\":\"Fact_ProjectExpenses.DAVVName\"}},{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"157.0085854453287D\"}}}},\"selector\":{\"metadata\":\"Sum(Fact_ProjectExpenses.TotalFoodExpenses)\"}}]}}}",
+          "filters": "[]",
+          "height": 360.72,
+          "width": 414.68,
+          "x": 865.32,
+          "y": 359.72,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"e54386421152de937e4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":797.377049180328,\"y\":82.9352068696331,\"z\":3000,\"width\":482.62295081967216,\"height\":216.8306010928962}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Fact_ProjectExpenses.Year\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ProjectExpenses\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Year\"},\"Name\":\"Fact_ProjectExpenses.Year\",\"NativeReferenceName\":\"Year\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalTravelExpenses\"}},\"Function\":0},\"Name\":\"Sum(Fact_ProjectExpenses.TotalTravelExpenses)\",\"NativeReferenceName\":\"Sum of TotalTravelExpenses\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TotalTravelExpenses\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 216.83,
+          "width": 482.62,
+          "x": 797.38,
+          "y": 82.94,
+          "z": 3000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#FFFFFF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"60L\"}}}}}]},\"howCreated\":\"Copilot\"}",
+      "displayName": "Fact_Chamcongtonghop Table",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "f878e6acd654dd859e91",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3537d454e6a1318db9ce\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"height\":48,\"width\":1280,\"tabOrder\":-1000,\"z\":0}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"fill\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#A6ADC6'\"}}}}},\"preset\":{\"expr\":{\"Literal\":{\"Value\":\"'Custom'\"}}},\"shadowSpread\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"shadowBlur\":{\"expr\":{\"Literal\":{\"Value\":\"5L\"}}},\"angle\":{\"expr\":{\"Literal\":{\"Value\":\"90L\"}}},\"shadowDistance\":{\"expr\":{\"Literal\":{\"Value\":\"4L\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"85L\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#E0E0E0'\"}}}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"4L\"}}}}}]}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 48.00,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"589a3e5459b29206f104\",\"layouts\":[{\"id\":0,\"position\":{\"x\":60,\"y\":86.66666666666667,\"z\":1000,\"width\":1145,\"height\":596.6666666666667,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ChamCongTongHop.NGAY\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.NAM)\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.TUAN)\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.MA_DU_AN)\"},{\"queryRef\":\"Fact_ChamCongTongHop.TEN_DU_AN\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.MA_NHANVIEN)\"},{\"queryRef\":\"Fact_ChamCongTongHop.TEN_NHANVIEN\"},{\"queryRef\":\"Fact_ChamCongTongHop.TEN_PM\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.SO_GIO_CONG_KHONG_ONSITE)\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.SO_GIO_CONG_KHONG_OT)\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.SO_GIO_CONG_ONSITE)\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.TIEN_AN)\"},{\"queryRef\":\"Sum(Fact_ChamCongTongHop.TIEN_DI_LAI)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ChamCongTongHop\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"NGAY\"},\"Name\":\"Fact_ChamCongTongHop.NGAY\",\"NativeReferenceName\":\"NGAY\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TUAN\"},\"Name\":\"Sum(Fact_ChamCongTongHop.TUAN)\",\"NativeReferenceName\":\"TUAN\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MA_DU_AN\"},\"Name\":\"Sum(Fact_ChamCongTongHop.MA_DU_AN)\",\"NativeReferenceName\":\"MA_DU_AN\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MA_NHANVIEN\"},\"Name\":\"Sum(Fact_ChamCongTongHop.MA_NHANVIEN)\",\"NativeReferenceName\":\"MA_NHANVIEN\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"NAM\"},\"Name\":\"Sum(Fact_ChamCongTongHop.NAM)\",\"NativeReferenceName\":\"NAM\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TEN_NHANVIEN\"},\"Name\":\"Fact_ChamCongTongHop.TEN_NHANVIEN\",\"NativeReferenceName\":\"TEN_NHANVIEN\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TEN_DU_AN\"},\"Name\":\"Fact_ChamCongTongHop.TEN_DU_AN\",\"NativeReferenceName\":\"TEN_DU_AN\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SO_GIO_CONG_KHONG_ONSITE\"}},\"Function\":0},\"Name\":\"Sum(Fact_ChamCongTongHop.SO_GIO_CONG_KHONG_ONSITE)\",\"NativeReferenceName\":\"Sum of SO_GIO_CONG_KHONG_ONSITE\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SO_GIO_CONG_KHONG_OT\"}},\"Function\":0},\"Name\":\"Sum(Fact_ChamCongTongHop.SO_GIO_CONG_KHONG_OT)\",\"NativeReferenceName\":\"Sum of SO_GIO_CONG_KHONG_OT\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SO_GIO_CONG_ONSITE\"}},\"Function\":0},\"Name\":\"Sum(Fact_ChamCongTongHop.SO_GIO_CONG_ONSITE)\",\"NativeReferenceName\":\"Sum of SO_GIO_CONG_ONSITE\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TIEN_AN\"}},\"Function\":0},\"Name\":\"Sum(Fact_ChamCongTongHop.TIEN_AN)\",\"NativeReferenceName\":\"Sum of TIEN_AN\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TIEN_DI_LAI\"}},\"Function\":0},\"Name\":\"Sum(Fact_ChamCongTongHop.TIEN_DI_LAI)\",\"NativeReferenceName\":\"Sum of TIEN_DI_LAI\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"TEN_PM\"},\"Name\":\"Fact_ChamCongTongHop.TEN_PM\",\"NativeReferenceName\":\"TEN_PM\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{},\"vcObjects\":{\"padding\":[{\"properties\":{\"top\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"left\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Record Count'\"}}}}}]}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 596.67,
+          "width": 1145.00,
+          "x": 60.00,
+          "y": 86.67,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"6814d3d7d08c49987f32\",\"layouts\":[{\"id\":0,\"position\":{\"height\":36,\"width\":160,\"x\":804,\"y\":6,\"tabOrder\":5000,\"z\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ChamCongTongHop.MA_NHANVIEN\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ChamCongTongHop\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MA_NHANVIEN\"},\"Name\":\"Fact_ChamCongTongHop.MA_NHANVIEN\",\"NativeReferenceName\":\"MA_NHANVIEN\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9L\"}}}}}]},\"vcObjects\":{\"padding\":[{\"properties\":{\"top\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"left\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 36.00,
+          "width": 160.00,
+          "x": 804.00,
+          "y": 6.00,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"8e6a9d0ec70c0740744b\",\"layouts\":[{\"id\":0,\"position\":{\"height\":32,\"width\":68,\"x\":980,\"y\":10,\"tabOrder\":6000,\"z\":6000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"NGAY\",\"textStyle\":{\"fontSize\":\"10pt\"}}],\"horizontalTextAlignment\":\"right\"}]}}]},\"vcObjects\":{}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 68.00,
+          "x": 980.00,
+          "y": 10.00,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"963efa6c5bd80ef5e49a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":60,\"y\":6,\"height\":40,\"width\":312,\"tabOrder\":8000,\"z\":8000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Fact_Chamcongtonghop Table\",\"textStyle\":{\"fontFamily\":\"Segoe UI\",\"fontSize\":\"14pt\",\"fontWeight\":\"bold\"}}]}]}}]},\"vcObjects\":{}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 40.00,
+          "width": 312.00,
+          "x": 60.00,
+          "y": 6.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"c0903b2693fe72a3f7bb\",\"layouts\":[{\"id\":0,\"position\":{\"height\":36,\"width\":160,\"x\":520,\"y\":6,\"tabOrder\":3000,\"z\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ChamCongTongHop.MA_DU_AN\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ChamCongTongHop\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"MA_DU_AN\"},\"Name\":\"Fact_ChamCongTongHop.MA_DU_AN\",\"NativeReferenceName\":\"MA_DU_AN\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}},\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"strictSingleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9L\"}}}}}],\"general\":[{\"properties\":{}}]},\"vcObjects\":{\"padding\":[{\"properties\":{\"top\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"left\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 36.00,
+          "width": 160.00,
+          "x": 520.00,
+          "y": 6.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"d52b0ed54594ea62f79e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":10,\"height\":28,\"width\":28,\"tabOrder\":9000,\"z\":9000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"Literal\":{\"Value\":\"'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAnIGhlaWdodD0nMjAnIHZpZXdCb3g9JzAgMCAyMCAyMCcgZmlsbD0nbm9uZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTIgNC41QzEyIDMuNjcxNTcgMTEuMzI4NCAzIDEwLjUgM0g5LjVDOC42NzE1NyAzIDggMy42NzE1NyA4IDQuNVYxN0gxMlY0LjVaTTEzIDZWMTdIMTYuNUMxNi43NzYxIDE3IDE3IDE2Ljc3NjEgMTcgMTYuNVY4QzE3IDYuODk1NDMgMTYuMTA0NiA2IDE1IDZIMTNaTTUgOUg3VjE3SDMuNUMzLjIyMzg2IDE3IDMgMTYuNzc2MSAzIDE2LjVWMTFDMyA5Ljg5NTQzIDMuODk1NDMgOSA1IDlaJyBmaWxsPSd3aGl0ZScvPjwvc3ZnPgo='\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#118DFF'\"}}}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#118DFF'\"}}}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"4L\"}}}}}],\"padding\":[{\"properties\":{\"top\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"4L\"}}},\"left\":{\"expr\":{\"Literal\":{\"Value\":\"3L\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"5L\"}}}}}]}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 28.00,
+          "width": 28.00,
+          "x": 20.00,
+          "y": 10.00,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"de5d0be326d24a4d8735\",\"layouts\":[{\"id\":0,\"position\":{\"height\":32,\"width\":78,\"x\":442,\"y\":10,\"tabOrder\":2000,\"z\":2000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"MA_DU_AN\",\"textStyle\":{\"fontSize\":\"10pt\"}}],\"horizontalTextAlignment\":\"right\"}]}}]},\"vcObjects\":{}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 78.00,
+          "x": 442.00,
+          "y": 10.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"e5918d1fef67276508c7\",\"layouts\":[{\"id\":0,\"position\":{\"height\":32,\"width\":108,\"x\":696,\"y\":10,\"tabOrder\":4000,\"z\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"MA_NHANVIEN\",\"textStyle\":{\"fontSize\":\"10pt\"}}],\"horizontalTextAlignment\":\"right\"}]}}]},\"vcObjects\":{}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 108.00,
+          "x": 696.00,
+          "y": 10.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"f2123616813e728976f6\",\"layouts\":[{\"id\":0,\"position\":{\"height\":36,\"width\":212,\"x\":1048,\"y\":6,\"tabOrder\":7000,\"z\":7000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Fact_ChamCongTongHop.NGAY\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"Fact_ChamCongTongHop\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"NGAY\"},\"Name\":\"Fact_ChamCongTongHop.NGAY\",\"NativeReferenceName\":\"NGAY\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"NGAY\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"header\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"slider\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9L\"}}}}}]},\"vcObjects\":{\"padding\":[{\"properties\":{\"top\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"left\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]}},\"howCreated\":\"Copilot\"}",
+          "filters": "[]",
+          "height": 36.00,
+          "width": 212.00,
+          "x": 1048.00,
+          "y": 6.00,
+          "z": 7000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

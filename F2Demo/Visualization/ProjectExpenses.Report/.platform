@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ProjectExpenses"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "98b78e3f-08a9-a17a-4acd-2159c40375ce"
+  }
+}

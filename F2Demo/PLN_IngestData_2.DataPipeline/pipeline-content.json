@@ -1,0 +1,353 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource"
+          },
+          "datasetSettings": {
+            "type": "LakehouseTable",
+            "typeProperties": {
+              "table": "Watermark"
+            },
+            "schema": [],
+            "linkedService": {
+              "name": "LKH_Bronze_Data",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "f65d78f2-4520-80a0-4ffd-e0a24b57cc09",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Tables"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Lookup_LastModified",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "2d708e82-ea7c-8c32-4fd5-1047fd3677e9",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Update_LastModified",
+        "dependsOn": [
+          {
+            "activity": "Copy data1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "SharePointOnlineListSource",
+            "httpRequestTimeout": "00:05:00",
+            "datasetSettings": {
+              "type": "SharePointOnlineListResource",
+              "typeProperties": {
+                "listName": "QuảnLýChấmCôngChiTiết"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "92057116-79d2-4ff1-9771-19c1554ff46e"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "ParquetSink",
+            "formatSettings": {
+              "type": "ParquetWriteSettings",
+              "enableVertiParquet": true
+            },
+            "storeSettings": {
+              "type": "LakehouseWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "@concat('Sharepoint','/','ChamCongChiTiet','/',formatDateTime(utcNow(), 'yyyy/MM/dd'),'/',pipeline().RunId)",
+                    "type": "Expression"
+                  }
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "LKH_Bronze_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "f65d78f2-4520-80a0-4ffd-e0a24b57cc09",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "Id",
+                  "type": "Int32"
+                },
+                "sink": {
+                  "name": "Id",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "ContentTypeID",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "ContentTypeID",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "ContentType",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "ContentType",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "Title",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "Title",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "Modified",
+                  "type": "DateTime"
+                },
+                "sink": {
+                  "name": "Modified",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "Created",
+                  "type": "DateTime"
+                },
+                "sink": {
+                  "name": "Created",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "CreatedById",
+                  "type": "Int32"
+                },
+                "sink": {
+                  "name": "CreatedById",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "ModifiedById",
+                  "type": "Int32"
+                },
+                "sink": {
+                  "name": "ModifiedById",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "Owshiddenversion",
+                  "type": "Int32"
+                },
+                "sink": {
+                  "name": "Owshiddenversion",
+                  "type": "Int32",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "Version",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "Version",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "Path",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "Path",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "ComplianceAssetId",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "ComplianceAssetId",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "MãChiTiết",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "DetailedTimeKeepingID",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "MãChấmCôngId",
+                  "type": "Int32"
+                },
+                "sink": {
+                  "name": "TimekeepingID",
+                  "physicalType": "INT_32"
+                }
+              },
+              {
+                "source": {
+                  "name": "Ngày",
+                  "type": "DateTime"
+                },
+                "sink": {
+                  "name": "Date",
+                  "physicalType": "INT96"
+                }
+              },
+              {
+                "source": {
+                  "name": "SốGiờ",
+                  "type": "Double"
+                },
+                "sink": {
+                  "name": "AmountOfHour",
+                  "physicalType": "DOUBLE"
+                }
+              },
+              {
+                "source": {
+                  "name": "TiềnĂn",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "FoodExpenses",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "TiềnĐiLại",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "TravelExpenses",
+                  "physicalType": "STRING"
+                }
+              },
+              {
+                "source": {
+                  "name": "ColorTag",
+                  "type": "String"
+                },
+                "sink": {
+                  "name": "ColorTag",
+                  "type": "String",
+                  "physicalType": "STRING"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy data1",
+        "dependsOn": [
+          {
+            "activity": "Lookup_LastModified",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+table Fact_ChamCongTongHop
+	lineageTag: a542d438-a659-473f-b405-2a4d1d334720
+	sourceLineageTag: [dbo].[Fact_ChamCongTongHop]
+
+	measure 'Total Hours' = ```
+			
+			        SUM('Fact_ChamCongTongHop'[SO_GIO_CONG_KHONG_ONSITE])
+			        + SUM('Fact_ChamCongTongHop'[SO_GIO_CONG_ONSITE])
+			
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d2525993-9134-4e75-9563-a6598dd49bc3
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column MA_DU_AN
+		dataType: string
+		sourceProviderType: varchar(-1)
+		lineageTag: a63ed3af-1326-483f-90c2-8ad21366df4e
+		sourceLineageTag: MA_DU_AN
+		summarizeBy: none
+		sourceColumn: MA_DU_AN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEN_DU_AN
+		dataType: string
+		sourceProviderType: varchar(-1)
+		lineageTag: 81d135ad-b102-4d73-9084-da5f7f31da5c
+		sourceLineageTag: TEN_DU_AN
+		summarizeBy: none
+		sourceColumn: TEN_DU_AN
+
+		annotation SummarizationSetBy = Automatic
+
+	column NGAY
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: b80f988e-0f66-4c17-9fc6-ebb1b6df2e79
+		sourceLineageTag: NGAY
+		summarizeBy: none
+		sourceColumn: NGAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column TUAN
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d61121cc-5027-4284-8a44-e41318d2572f
+		sourceLineageTag: TUAN
+		summarizeBy: sum
+		sourceColumn: TUAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column NAM
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 201fe0e4-0c7b-47d1-919b-2f1eb937d903
+		sourceLineageTag: NAM
+		summarizeBy: sum
+		sourceColumn: NAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column MA_NHANVIEN
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 323fb2c6-5377-4d1c-93b8-17e29346a884
+		sourceLineageTag: MA_NHANVIEN
+		summarizeBy: sum
+		sourceColumn: MA_NHANVIEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEN_NHANVIEN
+		dataType: string
+		sourceProviderType: varchar(-1)
+		lineageTag: 1582a6f4-4c46-495a-a6aa-8a59d4542f4e
+		sourceLineageTag: TEN_NHANVIEN
+		summarizeBy: none
+		sourceColumn: TEN_NHANVIEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column MA_PM
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5bb72a65-3274-4f6a-bf53-ac3f011e0350
+		sourceLineageTag: MA_PM
+		summarizeBy: sum
+		sourceColumn: MA_PM
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEN_PM
+		dataType: string
+		sourceProviderType: varchar(-1)
+		lineageTag: d13d2b29-287a-42a8-ba8f-df8a4bf9c0d5
+		sourceLineageTag: TEN_PM
+		summarizeBy: none
+		sourceColumn: TEN_PM
+
+		annotation SummarizationSetBy = Automatic
+
+	column SO_GIO_CONG_ONSITE
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(10, 2)
+		lineageTag: 8f95a973-d7ce-4e62-91c7-eb0eda2f92ee
+		sourceLineageTag: SO_GIO_CONG_ONSITE
+		summarizeBy: sum
+		sourceColumn: SO_GIO_CONG_ONSITE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column SO_GIO_CONG_KHONG_ONSITE
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(10, 2)
+		lineageTag: 1b92f71b-f2d0-493d-bb10-5ba226e85ffb
+		sourceLineageTag: SO_GIO_CONG_KHONG_ONSITE
+		summarizeBy: sum
+		sourceColumn: SO_GIO_CONG_KHONG_ONSITE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column SO_GIO_CONG_OT
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(10, 2)
+		lineageTag: 96083f46-a709-452c-aa36-35e3d0838b1a
+		sourceLineageTag: SO_GIO_CONG_OT
+		summarizeBy: sum
+		sourceColumn: SO_GIO_CONG_OT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column SO_GIO_CONG_KHONG_OT
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		sourceProviderType: decimal(10, 2)
+		lineageTag: d05322ca-9102-4bc4-9c23-214aa214de14
+		sourceLineageTag: SO_GIO_CONG_KHONG_OT
+		summarizeBy: sum
+		sourceColumn: SO_GIO_CONG_KHONG_OT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column TIEN_AN
+		dataType: double
+		sourceProviderType: decimal(18, 2)
+		lineageTag: 78e1898d-5622-4b68-b5b4-6b31a623b597
+		sourceLineageTag: TIEN_AN
+		summarizeBy: sum
+		sourceColumn: TIEN_AN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIEN_DI_LAI
+		dataType: double
+		sourceProviderType: decimal(18, 2)
+		lineageTag: 68793cf3-b5aa-4a86-98f4-76eec2829b7e
+		sourceLineageTag: TIEN_DI_LAI
+		summarizeBy: sum
+		sourceColumn: TIEN_DI_LAI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Fact_ChamCongTongHop = entity
+		mode: directLake
+		source
+			entityName: Fact_ChamCongTongHop
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

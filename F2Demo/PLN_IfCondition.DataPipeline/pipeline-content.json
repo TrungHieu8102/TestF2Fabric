@@ -1,0 +1,38 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "If Condition1",
+        "description": "Test cái IF Condition này để xem true có chạy không?",
+        "type": "IfCondition",
+        "dependsOn": [],
+        "typeProperties": {
+          "expression": {
+            "value": "@equals('abc','abc')",
+            "type": "Expression"
+          },
+          "ifFalseActivities": [
+            {
+              "name": "false",
+              "type": "Wait",
+              "dependsOn": [],
+              "typeProperties": {
+                "waitTimeInSeconds": 1
+              }
+            }
+          ],
+          "ifTrueActivities": [
+            {
+              "name": "true",
+              "type": "Wait",
+              "dependsOn": [],
+              "typeProperties": {
+                "waitTimeInSeconds": 1
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

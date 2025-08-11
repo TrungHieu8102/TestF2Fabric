@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "PLN_Etl_DanhSachDuAn"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f956bd8e-43c5-a823-42c5-3466eb6ae850"
+  }
+}

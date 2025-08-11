@@ -1,0 +1,88 @@
+table Fact_ProjectExpenses
+	lineageTag: 7330db67-9321-4e39-95b7-d7ba12cb3f10
+	sourceLineageTag: [dbo].[Fact_ProjectExpenses]
+
+	/// Calculates the sum of total food expenses from the Fact_ProjectExpenses table.
+	measure 'Sum of Total Food Expenses' = Sum(Fact_ProjectExpenses[TotalFoodExpenses])
+		lineageTag: df9723d7-3435-4173-b4e5-9c658e0f6be4
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAVVId
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ef052062-5d07-4006-a907-788ec8ff756e
+		sourceLineageTag: DAVVId
+		summarizeBy: count
+		sourceColumn: DAVVId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAVVName
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 13104443-f0a1-4dd0-9d1e-be44316c861c
+		sourceLineageTag: DAVVName
+		summarizeBy: none
+		sourceColumn: DAVVName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalFoodExpenses
+		dataType: double
+		sourceProviderType: float
+		lineageTag: ab69fa41-01c0-44d6-b39d-da1ad1b9ec39
+		sourceLineageTag: TotalFoodExpenses
+		summarizeBy: sum
+		sourceColumn: TotalFoodExpenses
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalTravelExpenses
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 9bebf49f-73c0-494f-a9dc-a13cbc4d862b
+		sourceLineageTag: TotalTravelExpenses
+		summarizeBy: sum
+		sourceColumn: TotalTravelExpenses
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: d8ce4966-f9bb-4d5a-91ac-a3ffc9fbeca7
+		sourceLineageTag: Year
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: baec5e27-e493-4db0-8f55-037448490464
+		sourceLineageTag: Month
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_ProjectExpenses = entity
+		mode: directLake
+		source
+			entityName: Fact_ProjectExpenses
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

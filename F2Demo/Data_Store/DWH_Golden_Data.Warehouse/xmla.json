@@ -1,0 +1,398 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1604,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "Fact_ChamCongTongHop",
+        "sourceLineageTag": "[dbo].[Fact_ChamCongTongHop]",
+        "columns": [
+          {
+            "name": "TEN_DU_AN",
+            "dataType": "string",
+            "sourceColumn": "TEN_DU_AN",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "TEN_DU_AN",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "NGAY",
+            "dataType": "dateTime",
+            "sourceColumn": "NGAY",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "NGAY",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TUAN",
+            "dataType": "int64",
+            "sourceColumn": "TUAN",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "TUAN",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "NAM",
+            "dataType": "int64",
+            "sourceColumn": "NAM",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "NAM",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "MA_NHANVIEN",
+            "dataType": "int64",
+            "sourceColumn": "MA_NHANVIEN",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "MA_NHANVIEN",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TEN_NHANVIEN",
+            "dataType": "string",
+            "sourceColumn": "TEN_NHANVIEN",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "TEN_NHANVIEN",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "MA_PM",
+            "dataType": "int64",
+            "sourceColumn": "MA_PM",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "MA_PM",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TEN_PM",
+            "dataType": "string",
+            "sourceColumn": "TEN_PM",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "TEN_PM",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_ONSITE",
+            "dataType": "decimal",
+            "sourceColumn": "SO_GIO_CONG_ONSITE",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "SO_GIO_CONG_ONSITE",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_KHONG_ONSITE",
+            "dataType": "decimal",
+            "sourceColumn": "SO_GIO_CONG_KHONG_ONSITE",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "SO_GIO_CONG_KHONG_ONSITE",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_OT",
+            "dataType": "decimal",
+            "sourceColumn": "SO_GIO_CONG_OT",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "SO_GIO_CONG_OT",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_KHONG_OT",
+            "dataType": "decimal",
+            "sourceColumn": "SO_GIO_CONG_KHONG_OT",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "SO_GIO_CONG_KHONG_OT",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TIEN_AN",
+            "dataType": "double",
+            "sourceColumn": "TIEN_AN",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "TIEN_AN",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "TIEN_DI_LAI",
+            "dataType": "double",
+            "sourceColumn": "TIEN_DI_LAI",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "TIEN_DI_LAI",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "MA_DU_AN",
+            "dataType": "string",
+            "sourceColumn": "MA_DU_AN",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "MA_DU_AN",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "Fact_ChamCongTongHop",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "Fact_ProjectExpenses",
+        "sourceLineageTag": "[dbo].[Fact_ProjectExpenses]",
+        "columns": [
+          {
+            "name": "DAVVId",
+            "dataType": "int64",
+            "sourceColumn": "DAVVId",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "DAVVId",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DAVVName",
+            "dataType": "string",
+            "sourceColumn": "DAVVName",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "DAVVName",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TotalFoodExpenses",
+            "dataType": "double",
+            "sourceColumn": "TotalFoodExpenses",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "TotalFoodExpenses",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "TotalTravelExpenses",
+            "dataType": "double",
+            "sourceColumn": "TotalTravelExpenses",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "TotalTravelExpenses",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "Year",
+            "dataType": "string",
+            "sourceColumn": "Year",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Year",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Month",
+            "dataType": "string",
+            "sourceColumn": "Month",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "Month",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "Fact_ProjectExpenses",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}

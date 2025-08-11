@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "source": {
+      "type": "MSSQL",
+      "typeProperties": {
+        "connection": "f1097401-c4a4-49d6-a91c-c9e9c08a3bb1"
+      }
+    },
+    "target": {
+      "type": "MountedRelationalDatabase",
+      "typeProperties": {
+        "defaultSchema": "dbo",
+        "format": "Delta"
+      }
+    }
+  }
+}
