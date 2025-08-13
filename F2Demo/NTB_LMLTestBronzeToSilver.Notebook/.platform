@@ -1,11 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "DataPipeline",
-    "displayName": "PLN_Upsert_Incremental"
+    "type": "Notebook",
+    "displayName": "NTB_LMLTestBronzeToSilver",
+    "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "7583331c-450f-8e2b-4693-f2b15e1a3935"
+    "logicalId": "91adba92-ff63-82c1-4963-3416a1d1ccae"
   }
 }

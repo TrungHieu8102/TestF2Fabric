@@ -2,43 +2,11 @@
   "properties": {
     "activities": [
       {
-        "type": "TridentNotebook",
-        "typeProperties": {
-          "notebookId": "8dd3f4e0-bf20-863b-4ec5-d8cdd192b13e",
-          "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "parameters": {
-            "table_list": {
-              "value": {
-                "value": "@join(variables('table_list'), ',')\n",
-                "type": "Expression"
-              },
-              "type": "string"
-            }
-          }
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "UpsertToSilver",
-        "dependsOn": [
-          {
-            "activity": "ForEach1",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
         "type": "Lookup",
         "typeProperties": {
           "source": {
             "type": "DataWarehouseSource",
-            "sqlReaderQuery": "select * from dbo.WaterMark",
+            "sqlReaderQuery": "SELECT * FROM dbo.WaterMark",
             "partitionOption": "None",
             "queryTimeout": "02:00:00"
           },
@@ -68,7 +36,7 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "OldWaterMark",
+        "name": "GetWatermarkTableList",
         "dependsOn": []
       },
       {
@@ -76,7 +44,7 @@
         "typeProperties": {
           "isSequential": true,
           "items": {
-            "value": "@activity('OldWaterMark').output.value\n",
+            "value": "@activity('GetWatermarkTableList').output.value",
             "type": "Expression"
           },
           "activities": [
@@ -95,6 +63,8 @@
                 "datasetSettings": {
                   "type": "SqlServerTable",
                   "typeProperties": {
+                    "schema": "vh",
+                    "table": "PIC",
                     "database": "VCR_CRM"
                   },
                   "schema": [],
@@ -112,8 +82,51 @@
                 "secureInput": false,
                 "secureOutput": false
               },
-              "name": "NewWaterMark",
+              "name": "GetNewWatermark",
               "dependsOn": []
+            },
+            {
+              "type": "Script",
+              "typeProperties": {
+                "scripts": [
+                  {
+                    "text": {
+                      "value": "UPDATE dbo.WaterMark\nSET LastModifiedDate = '@{activity('GetNewWatermark').output.firstRow.NewModifiedValue}'\nWHERE TABLE_NAME = '@{item().TABLE_NAME}'",
+                      "type": "Expression"
+                    },
+                    "type": "NonQuery"
+                  }
+                ],
+                "scriptBlockExecutionTimeout": "02:00:00"
+              },
+              "linkedService": {
+                "name": "WH_WaterMark",
+                "properties": {
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "artifactId": "557663ee-3177-4b83-893f-2f78a0f5f01e",
+                    "endpoint": "ql6hjfjj6tau3cdghtp44mg4da-dtfxnddcz67e5oo7fgkqtabwre.datawarehouse.fabric.microsoft.com",
+                    "workspaceId": "8c76cb1c-cf62-4ebe-b9df-299509803689"
+                  },
+                  "annotations": []
+                }
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "UpdateWatermark",
+              "dependsOn": [
+                {
+                  "activity": "UpsertBronzeToSilver",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
             },
             {
               "type": "Copy",
@@ -121,7 +134,7 @@
                 "source": {
                   "type": "SqlServerSource",
                   "sqlReaderQuery": {
-                    "value": "SELECT * FROM\n@{item().TABLE_SCHEMA}.@{item().TABLE_NAME}\nWHERE LastModifiedDate > '@{item().LastModifiedDate}'\nAND LastModifiedDate <= '@{activity('NewWaterMark').output.firstRow.NewModifiedValue}'",
+                    "value": "SELECT * FROM\n@{item().TABLE_SCHEMA}.@{item().TABLE_NAME}\nWHERE LastModifiedDate > '@{item().LastModifiedDate}'\nAND LastModifiedDate <= '@{activity('GetNewWatermark').output.firstRow.NewModifiedValue}'",
                     "type": "Expression"
                   },
                   "partitionOption": "None",
@@ -195,7 +208,7 @@
               "name": "IncrementalLoad",
               "dependsOn": [
                 {
-                  "activity": "NewWaterMark",
+                  "activity": "GetNewWatermark",
                   "dependencyConditions": [
                     "Succeeded"
                   ]
@@ -203,29 +216,18 @@
               ]
             },
             {
-              "type": "Script",
+              "type": "TridentNotebook",
               "typeProperties": {
-                "scripts": [
-                  {
-                    "text": {
-                      "value": "UPDATE dbo.WaterMark\r\nSET LastModifiedDate = '@{activity('NewWaterMark').output.firstRow.NewModifiedValue}'\r\nWHERE TABLE_NAME = '@{item().TABLE_NAME}'",
+                "notebookId": "8dd3f4e0-bf20-863b-4ec5-d8cdd192b13e",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "table_name": {
+                    "value": {
+                      "value": "@item().TABLE_NAME",
                       "type": "Expression"
                     },
-                    "type": "NonQuery"
+                    "type": "string"
                   }
-                ],
-                "scriptBlockExecutionTimeout": "02:00:00"
-              },
-              "linkedService": {
-                "name": "WH_WaterMark",
-                "properties": {
-                  "type": "DataWarehouse",
-                  "typeProperties": {
-                    "artifactId": "557663ee-3177-4b83-893f-2f78a0f5f01e",
-                    "endpoint": "ql6hjfjj6tau3cdghtp44mg4da-dtfxnddcz67e5oo7fgkqtabwre.datawarehouse.fabric.microsoft.com",
-                    "workspaceId": "8c76cb1c-cf62-4ebe-b9df-299509803689"
-                  },
-                  "annotations": []
                 }
               },
               "policy": {
@@ -235,34 +237,22 @@
                 "secureInput": false,
                 "secureOutput": false
               },
-              "name": "UpdateWaterMark",
+              "name": "UpsertBronzeToSilver",
               "dependsOn": [
                 {
-                  "activity": "NewWaterMark",
+                  "activity": "IncrementalLoad",
                   "dependencyConditions": [
                     "Succeeded"
                   ]
                 }
               ]
-            },
-            {
-              "type": "AppendVariable",
-              "typeProperties": {
-                "variableName": "table_list",
-                "value": {
-                  "value": "@item().TABLE_NAME",
-                  "type": "Expression"
-                }
-              },
-              "name": "Append variable1",
-              "dependsOn": []
             }
           ]
         },
-        "name": "ForEach1",
+        "name": "ProcessEachTable",
         "dependsOn": [
           {
-            "activity": "OldWaterMark",
+            "activity": "GetWatermarkTableList",
             "dependencyConditions": [
               "Succeeded"
             ]
@@ -271,8 +261,11 @@
       }
     ],
     "variables": {
-      "table_list": {
-        "type": "Array"
+      "TableName": {
+        "type": "string"
+      },
+      "TableList": {
+        "type": "array"
       }
     }
   }

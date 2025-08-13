@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "DataPipeline",
-    "displayName": "PLN_Upsert_Incremental"
+    "displayName": "PLN_LongTestFlow"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "7583331c-450f-8e2b-4693-f2b15e1a3935"
+    "logicalId": "c458ffd4-9ef6-a778-4d7a-e231778bf912"
   }
 }

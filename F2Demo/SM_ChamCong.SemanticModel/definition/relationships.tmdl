@@ -1,4 +1,0 @@
-relationship c64d9c61-d8c4-716b-ac2a-6f6ec2e5b10d
-	fromColumn: ierp_chamcongchitiet.TimekeepingID
-	toColumn: Ierp_ChamCong.Id
-

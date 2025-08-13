@@ -2,81 +2,11 @@
   "properties": {
     "activities": [
       {
-        "type": "TridentNotebook",
-        "typeProperties": {
-          "notebookId": "8dd3f4e0-bf20-863b-4ec5-d8cdd192b13e",
-          "workspaceId": "00000000-0000-0000-0000-000000000000",
-          "parameters": {
-            "table_list": {
-              "value": {
-                "value": "@join(variables('table_list'), ',')\n",
-                "type": "Expression"
-              },
-              "type": "string"
-            }
-          }
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "UpsertToSilver",
-        "dependsOn": [
-          {
-            "activity": "ForEach1",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
-      },
-      {
-        "type": "Lookup",
-        "typeProperties": {
-          "source": {
-            "type": "DataWarehouseSource",
-            "sqlReaderQuery": "select * from dbo.WaterMark",
-            "partitionOption": "None",
-            "queryTimeout": "02:00:00"
-          },
-          "datasetSettings": {
-            "type": "DataWarehouseTable",
-            "schema": [],
-            "linkedService": {
-              "name": "WH_WaterMark",
-              "properties": {
-                "type": "DataWarehouse",
-                "typeProperties": {
-                  "artifactId": "557663ee-3177-4b83-893f-2f78a0f5f01e",
-                  "endpoint": "ql6hjfjj6tau3cdghtp44mg4da-dtfxnddcz67e5oo7fgkqtabwre.datawarehouse.fabric.microsoft.com",
-                  "workspaceId": "8c76cb1c-cf62-4ebe-b9df-299509803689"
-                },
-                "annotations": []
-              }
-            },
-            "annotations": []
-          },
-          "firstRowOnly": false
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "OldWaterMark",
-        "dependsOn": []
-      },
-      {
         "type": "ForEach",
         "typeProperties": {
           "isSequential": true,
           "items": {
-            "value": "@activity('OldWaterMark').output.value\n",
+            "value": "@activity('GetWatermarkTableList').output.value",
             "type": "Expression"
           },
           "activities": [
@@ -102,8 +32,7 @@
                     "connection": "f1097401-c4a4-49d6-a91c-c9e9c08a3bb1"
                   },
                   "annotations": []
-                },
-                "firstRowOnly": true
+                }
               },
               "policy": {
                 "timeout": "0.12:00:00",
@@ -112,7 +41,7 @@
                 "secureInput": false,
                 "secureOutput": false
               },
-              "name": "NewWaterMark",
+              "name": "GetNewWatermarkDate",
               "dependsOn": []
             },
             {
@@ -121,7 +50,7 @@
                 "source": {
                   "type": "SqlServerSource",
                   "sqlReaderQuery": {
-                    "value": "SELECT * FROM\n@{item().TABLE_SCHEMA}.@{item().TABLE_NAME}\nWHERE LastModifiedDate > '@{item().LastModifiedDate}'\nAND LastModifiedDate <= '@{activity('NewWaterMark').output.firstRow.NewModifiedValue}'",
+                    "value": "SELECT * FROM\n@{item().TABLE_SCHEMA}.@{item().TABLE_NAME}\nWHERE LastModifiedDate > '@{item().LastModifiedDate}'\nAND LastModifiedDate <= '@{activity('GetNewWatermarkDate').output.firstRow.NewModifiedValue}'",
                     "type": "Expression"
                   },
                   "partitionOption": "None",
@@ -153,7 +82,7 @@
                       "location": {
                         "type": "LakehouseLocation",
                         "folderPath": {
-                          "value": "@concat('incremental_loads/', item().TABLE_NAME, '/', formatDateTime(utcNow(), 'yyyy/MM/dd'))",
+                          "value": "@concat('data_loaded/', item().TABLE_NAME, '/', formatDateTime(utcNow(), 'yyyy/MM/dd'),'/',pipeline().RunId)",
                           "type": "Expression"
                         }
                       },
@@ -192,10 +121,10 @@
                 "secureInput": false,
                 "secureOutput": false
               },
-              "name": "IncrementalLoad",
+              "name": "LoadDataEachTable",
               "dependsOn": [
                 {
-                  "activity": "NewWaterMark",
+                  "activity": "GetNewWatermarkDate",
                   "dependencyConditions": [
                     "Succeeded"
                   ]
@@ -208,7 +137,7 @@
                 "scripts": [
                   {
                     "text": {
-                      "value": "UPDATE dbo.WaterMark\r\nSET LastModifiedDate = '@{activity('NewWaterMark').output.firstRow.NewModifiedValue}'\r\nWHERE TABLE_NAME = '@{item().TABLE_NAME}'",
+                      "value": "UPDATE dbo.WaterMark\r\nSET LastModifiedDate = '@{activity('GetNewWatermarkDate').output.firstRow.NewModifiedValue}'\r\nWHERE TABLE_NAME = '@{item().TABLE_NAME}'",
                       "type": "Expression"
                     },
                     "type": "NonQuery"
@@ -235,10 +164,10 @@
                 "secureInput": false,
                 "secureOutput": false
               },
-              "name": "UpdateWaterMark",
+              "name": "UpdateNewModifiedDate",
               "dependsOn": [
                 {
-                  "activity": "NewWaterMark",
+                  "activity": "GetNewWatermarkDate",
                   "dependencyConditions": [
                     "Succeeded"
                   ]
@@ -248,13 +177,13 @@
             {
               "type": "AppendVariable",
               "typeProperties": {
-                "variableName": "table_list",
+                "variableName": "listTables",
                 "value": {
-                  "value": "@item().TABLE_NAME",
+                  "value": "@item().TABLE_NAME\n",
                   "type": "Expression"
                 }
               },
-              "name": "Append variable1",
+              "name": "AppendListTable",
               "dependsOn": []
             }
           ]
@@ -262,17 +191,95 @@
         "name": "ForEach1",
         "dependsOn": [
           {
-            "activity": "OldWaterMark",
+            "activity": "GetWatermarkTableList",
             "dependencyConditions": [
               "Succeeded"
             ]
           }
         ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "91adba92-ff63-82c1-4963-3416a1d1ccae",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "table_name": {
+              "value": {
+                "value": "@string(variables('listTables'))",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "RUN_ID": {
+              "value": {
+                "value": "@pipeline().RunId",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "BronzeToSilver",
+        "dependsOn": [
+          {
+            "activity": "ForEach1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "SELECT * FROM dbo.WaterMark",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "DataWarehouseTable",
+            "schema": [],
+            "linkedService": {
+              "name": "WH_WaterMark",
+              "properties": {
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "artifactId": "557663ee-3177-4b83-893f-2f78a0f5f01e",
+                  "endpoint": "ql6hjfjj6tau3cdghtp44mg4da-dtfxnddcz67e5oo7fgkqtabwre.datawarehouse.fabric.microsoft.com",
+                  "workspaceId": "8c76cb1c-cf62-4ebe-b9df-299509803689"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "GetWatermarkTableList",
+        "dependsOn": []
       }
     ],
     "variables": {
-      "table_list": {
-        "type": "Array"
+      "listTables": {
+        "type": "Array",
+        "defaultValue": []
       }
     }
   }
