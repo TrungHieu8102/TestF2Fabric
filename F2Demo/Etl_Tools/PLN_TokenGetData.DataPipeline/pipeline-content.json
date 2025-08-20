@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "WebActivity",
+        "typeProperties": {
+          "method": "GET",
+          "relativeUrl": "api/captcha/get",
+          "headers": {}
+        },
+        "externalReferences": {
+          "connection": "84339afb-6bc7-4b9f-8997-61a08627a87f"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get_Captcha",
+        "dependsOn": []
+      },
+      {
+        "type": "WebActivity",
+        "typeProperties": {
+          "method": "POST",
+          "relativeUrl": {
+            "value": "@concat('api/account/login')",
+            "type": "Expression"
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "value": "{\n  \"username\": \"Admin\",\n  \"password\": \"Ierp2024@{concat('@')}#$\",\n  \"recaptchaToken\": \"@{activity('Get_Captcha').output.captchaCode}\"\n}",
+            "type": "Expression"
+          }
+        },
+        "externalReferences": {
+          "connection": "84339afb-6bc7-4b9f-8997-61a08627a87f"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Login_Token",
+        "dependsOn": [
+          {
+            "activity": "Get_Captcha",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "RestSource",
+            "requestMethod": "GET",
+            "additionalHeaders": {
+              "Authorization": {
+                "value": "Bearer @{activity('Login_Token').output.data.accessToken}",
+                "type": "Expression"
+              }
+            },
+            "paginationRules": {
+              "supportRFC5988": "true"
+            },
+            "httpRequestTimeout": "00:01:40",
+            "requestInterval": "00.00:00:00.010",
+            "datasetSettings": {
+              "type": "RestResource",
+              "typeProperties": {
+                "relativeUrl": "api/dstb/filter/0/10"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "163d0055-9053-45fa-8e01-51374066c036"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "JsonSink",
+            "formatSettings": {
+              "type": "JsonWriteSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Json",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "@concat('API_Of_Long')",
+                    "type": "Expression"
+                  },
+                  "fileName": "Long_Test.json"
+                }
+              },
+              "schema": {},
+              "linkedService": {
+                "name": "LKH_Bronze_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "f65d78f2-4520-80a0-4ffd-e0a24b57cc09",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Get_API_Data",
+        "dependsOn": [
+          {
+            "activity": "Login_Token",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
