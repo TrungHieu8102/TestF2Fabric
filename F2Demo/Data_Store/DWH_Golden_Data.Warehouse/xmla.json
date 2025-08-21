@@ -375,6 +375,267 @@
             "value": "False"
           }
         ]
+      },
+      {
+        "name": "Test",
+        "sourceLineageTag": "[dbo].[Test]",
+        "columns": [
+          {
+            "name": "MA_DU_AN",
+            "dataType": "string",
+            "sourceColumn": "MA_DU_AN",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "MA_DU_AN",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TEN_DU_AN",
+            "dataType": "string",
+            "sourceColumn": "TEN_DU_AN",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "TEN_DU_AN",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "NGAY",
+            "dataType": "dateTime",
+            "sourceColumn": "NGAY",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "NGAY",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TUAN",
+            "dataType": "int64",
+            "sourceColumn": "TUAN",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "TUAN",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "NAM",
+            "dataType": "int64",
+            "sourceColumn": "NAM",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "NAM",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "MA_NHANVIEN",
+            "dataType": "string",
+            "sourceColumn": "MA_NHANVIEN",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "MA_NHANVIEN",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TEN_NHANVIEN",
+            "dataType": "string",
+            "sourceColumn": "TEN_NHANVIEN",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "TEN_NHANVIEN",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "MA_PM",
+            "dataType": "string",
+            "sourceColumn": "MA_PM",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "MA_PM",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "TEN_PM",
+            "dataType": "string",
+            "sourceColumn": "TEN_PM",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "TEN_PM",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_ONSITE",
+            "dataType": "double",
+            "sourceColumn": "SO_GIO_CONG_ONSITE",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "SO_GIO_CONG_ONSITE",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_KHONG_ONSITE",
+            "dataType": "double",
+            "sourceColumn": "SO_GIO_CONG_KHONG_ONSITE",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "SO_GIO_CONG_KHONG_ONSITE",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_OT",
+            "dataType": "double",
+            "sourceColumn": "SO_GIO_CONG_OT",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "SO_GIO_CONG_OT",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "SO_GIO_CONG_KHONG_OT",
+            "dataType": "double",
+            "sourceColumn": "SO_GIO_CONG_KHONG_OT",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "SO_GIO_CONG_KHONG_OT",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "TIEN_AN",
+            "dataType": "double",
+            "sourceColumn": "TIEN_AN",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "TIEN_AN",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "TIEN_DI_LAI",
+            "dataType": "double",
+            "sourceColumn": "TIEN_DI_LAI",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "TIEN_DI_LAI",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "Test",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
       }
     ],
     "expressions": [

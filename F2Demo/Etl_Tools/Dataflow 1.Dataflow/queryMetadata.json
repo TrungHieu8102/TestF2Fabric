@@ -1,0 +1,36 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "Dataflow 1",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "gatewayObjectId": "7021e93f-b837-4cb1-acc6-2b5dc30b477e",
+  "queriesMetadata": {
+    "Displayed text (2)": {
+      "queryId": "2ed17a3e-b6e6-4a9c-b02f-4f0ef96f349c",
+      "queryName": "Displayed text (2)"
+    }
+  },
+  "connections": [
+    {
+      "path": "http://vcrportalapi.ierp.local:8088",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"7021e93f-b837-4cb1-acc6-2b5dc30b477e\",\"DatasourceId\":\"f2a27d25-ab37-4631-9158-08d84dc30001\"}"
+    },
+    {
+      "path": "http://vcrportalapi.ierp.local:8088/api/report-period/Year/filter-without-permission/0/1000",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"cae0d8f5-c54a-4298-9512-c38a91e88d4f\",\"DatasourceId\":\"d01df392-f5fd-4472-932f-c6fcb3fdb3d5\"}"
+    },
+    {
+      "path": "http://192.168.41.49:8088/",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"cae0d8f5-c54a-4298-9512-c38a91e88d4f\",\"DatasourceId\":\"d62f340e-8f17-404c-b3f5-2d10a93f7cfa\"}"
+    },
+    {
+      "path": "http://192.168.21.49:8088/",
+      "kind": "Web",
+      "connectionId": "{\"ClusterId\":\"cae0d8f5-c54a-4298-9512-c38a91e88d4f\",\"DatasourceId\":\"26d6c062-568d-4e46-a35e-36412f5205aa\"}"
+    }
+  ]
+}

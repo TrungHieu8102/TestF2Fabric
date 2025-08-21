@@ -1,0 +1,92 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "RestSource",
+            "requestMethod": "GET",
+            "additionalHeaders": {
+              "Authorization": {
+                "value": "@pipeline().parameters.Token",
+                "type": "Expression"
+              }
+            },
+            "paginationRules": {
+              "supportRFC5988": "true"
+            },
+            "httpRequestTimeout": "00:01:40",
+            "requestInterval": "00.00:00:00.010",
+            "datasetSettings": {
+              "type": "RestResource",
+              "typeProperties": {
+                "relativeUrl": {
+                  "value": "@concat('api/dstb/filter/0/10')",
+                  "type": "Expression"
+                }
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "163d0055-9053-45fa-8e01-51374066c036"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "JsonSink",
+            "formatSettings": {
+              "type": "JsonWriteSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Json",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": {
+                    "value": "@concat('Long_API')",
+                    "type": "Expression"
+                  },
+                  "fileName": "api.json"
+                }
+              },
+              "schema": {},
+              "linkedService": {
+                "name": "LKH_Bronze_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "f65d78f2-4520-80a0-4ffd-e0a24b57cc09",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy data1",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "Token": {
+        "type": "string",
+        "defaultValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOWYyOWQ3ZTQtM2FiZi00M2NmLTk0MGYtYjUzMWZmYjc4ODQ0IiwidG9rZW5faW5zdGFuY2VfaWQiOiJoQ2JwNUdzYnh1MXBxZm5IZHlod2poYVdCMmpSNXZmVHp5aFNvcTIiLCJqdGkiOiI2ZmIzM2Y3ZS01N2VjLTRiYzctOTIwYS0zMTRmZTNiMWRkYzYiLCJwcm4iOiJjNzFmNzliZC0zMzVlLTRiNWItOGI3ZS0yOGE4NmMxNDdlNTQiLCJuYmYiOjE3NTU1MDU1MTgsImV4cCI6MTc1NTUwOTExOCwiaWF0IjoxNzU1NTA1NTE4LCJpc3MiOiJodHRwczovL2FwaS1iY3F0LnZpbmNvbS5jb20udm4iLCJhdWQiOiJodHRwczovL2FwaS1iY3F0LnZpbmNvbS5jb20udm4ifQ.1AL8n5MVP6qO1yWQ3w3MzRL8FGfo-QzYnlwTCFMk8u4"
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "HttpReadSettings",
+              "requestMethod": "GET"
+            }
+          },
+          "datasetSettings": {
+            "type": "Json",
+            "typeProperties": {
+              "location": {
+                "type": "HttpServerLocation",
+                "relativeUrl": "api/captcha/get"
+              }
+            },
+            "schema": {},
+            "externalReferences": {
+              "connection": "163d0055-9053-45fa-8e01-51374066c036"
+            },
+            "annotations": []
+          },
+          "firstRowOnly": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "GetCaptcha",
+        "dependsOn": []
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "RestSource",
+            "requestMethod": "GET",
+            "additionalHeaders": {
+              "Authorization": {
+                "value": "@concat('Bearer ', activity('Web1').output.data.accessToken)\n",
+                "type": "Expression"
+              }
+            },
+            "paginationRules": {
+              "supportRFC5988": "true"
+            },
+            "httpRequestTimeout": "00:05:00",
+            "requestInterval": "00.00:00:00.010",
+            "datasetSettings": {
+              "type": "RestResource",
+              "typeProperties": {
+                "relativeUrl": "api/dstb/filter/0/10"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "163d0055-9053-45fa-8e01-51374066c036"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "JsonSink",
+            "formatSettings": {
+              "type": "JsonWriteSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Json",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": "API",
+                  "fileName": "data1"
+                }
+              },
+              "schema": {},
+              "linkedService": {
+                "name": "LKH_Bronze_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "f65d78f2-4520-80a0-4ffd-e0a24b57cc09",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "GetDataFromAPI",
+        "dependsOn": [
+          {
+            "activity": "Web1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "WebActivity",
+        "typeProperties": {
+          "method": "POST",
+          "relativeUrl": "api/account/login",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "value": "{\n  \"loginRequest\": {\n    \"username\": \"@{pipeline().parameters.username}\",\n    \"password\": \"@{pipeline().parameters.password}\",\n    \"recaptchaToken\": \"@{activity('GetCaptcha').output}\"\n  }\n}\n",
+            "type": "Expression"
+          },
+          "httpRequestTimeout": "00:05:00"
+        },
+        "externalReferences": {
+          "connection": "f42fdf38-0ead-4b83-94a3-e33593ae962c"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Web1",
+        "dependsOn": [
+          {
+            "activity": "GetCaptcha",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "username": {
+        "type": "string",
+        "defaultValue": "Admin"
+      },
+      "password": {
+        "type": "string",
+        "defaultValue": "Ierp2024@#$"
+      }
+    }
+  }
+}

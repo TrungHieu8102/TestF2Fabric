@@ -1,0 +1,84 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "JsonSource",
+            "formatSettings": {
+              "type": "JsonReadSettings"
+            },
+            "storeSettings": {
+              "type": "HttpReadSettings",
+              "requestMethod": "GET",
+              "additionalHeaders": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOWYyOWQ3ZTQtM2FiZi00M2NmLTk0MGYtYjUzMWZmYjc4ODQ0IiwidG9rZW5faW5zdGFuY2VfaWQiOiJoQ2JwNUdzYnh1MXBxZm5IZHlod2poYVdCMmpSNXZmVHp5aFNvcTIiLCJqdGkiOiI2ZmIzM2Y3ZS01N2VjLTRiYzctOTIwYS0zMTRmZTNiMWRkYzYiLCJwcm4iOiJjNzFmNzliZC0zMzVlLTRiNWItOGI3ZS0yOGE4NmMxNDdlNTQiLCJuYmYiOjE3NTU1MDU1MTgsImV4cCI6MTc1NTUwOTExOCwiaWF0IjoxNzU1NTA1NTE4LCJpc3MiOiJodHRwczovL2FwaS1iY3F0LnZpbmNvbS5jb20udm4iLCJhdWQiOiJodHRwczovL2FwaS1iY3F0LnZpbmNvbS5jb20udm4ifQ.1AL8n5MVP6qO1yWQ3w3MzRL8FGfo-QzYnlwTCFMk8u4"
+            },
+            "datasetSettings": {
+              "type": "Json",
+              "typeProperties": {
+                "location": {
+                  "type": "HttpServerLocation",
+                  "relativeUrl": "api/report-period/Year/filter-without-permission/0/1000"
+                }
+              },
+              "schema": {},
+              "externalReferences": {
+                "connection": "ff7117ad-9cff-4cb1-b341-2cf0b0c8dd3c"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "Append",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "table": "test_API"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "LKH_Bronze_Data",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "f65d78f2-4520-80a0-4ffd-e0a24b57cc09",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            },
+            "columnFlattenSettings": {
+              "treatArrayAsString": false,
+              "treatStructAsString": false,
+              "flattenColumnDelimiter": "."
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy data1",
+        "dependsOn": []
+      }
+    ]
+  }
+}

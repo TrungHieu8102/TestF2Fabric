@@ -4,7 +4,8 @@
       {
         "type": "ForEach",
         "typeProperties": {
-          "isSequential": true,
+          "isSequential": false,
+          "batchCount": 25,
           "items": {
             "value": "@activity('GetWatermarkTableList').output.value",
             "type": "Expression"
@@ -274,8 +275,52 @@
         },
         "name": "GetWatermarkTableList",
         "dependsOn": []
+      },
+      {
+        "type": "SqlServerStoredProcedure",
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[InsertDataFromFactChamCongTongHop]",
+          "storedProcedureParameters": {
+            "MA_DU_AN": {
+              "value": {
+                "value": "@pipeline().parameters.MaDuAn",
+                "type": "Expression"
+              },
+              "type": "String"
+            }
+          }
+        },
+        "linkedService": {
+          "name": "DWH_Golden_Data",
+          "properties": {
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "artifactId": "193d07cb-71cb-499f-aca2-624d5978352d",
+              "endpoint": "ql6hjfjj6tau3cdghtp44mg4da-dtfxnddcz67e5oo7fgkqtabwre.datawarehouse.fabric.microsoft.com",
+              "workspaceId": "8c76cb1c-cf62-4ebe-b9df-299509803689"
+            },
+            "annotations": []
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Stored procedure1",
+        "state": "Inactive",
+        "onInactiveMarkAs": "Succeeded",
+        "dependsOn": []
       }
     ],
+    "parameters": {
+      "MaDuAn": {
+        "type": "string",
+        "defaultValue": "P_NgaBV"
+      }
+    },
     "variables": {
       "listTables": {
         "type": "Array",

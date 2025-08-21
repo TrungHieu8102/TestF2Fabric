@@ -74,7 +74,8 @@
       {
         "type": "ForEach",
         "typeProperties": {
-          "isSequential": true,
+          "isSequential": false,
+          "batchCount": 4,
           "items": {
             "value": "@activity('OldWaterMark').output.value\n",
             "type": "Expression"
